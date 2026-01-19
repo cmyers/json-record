@@ -1,0 +1,60 @@
+{
+  "name": "json-ledger",
+  "version": "0.0.1",
+  "author": "Chris Myers <cmyers2015@outlook.com> (https://www.npmjs.com/~cmyers-dev)",
+  "description": "A lightweight, tamper-evident, hash-linked ledger for JSON or binary payloads, with optional WebCrypto signatures.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "ledger",
+    "hash-chain",
+    "append-only",
+    "tamper-evident",
+    "cryptography",
+    "digital-signature",
+    "data-integrity",
+    "json",
+    "json-security",
+    "typescript",
+    "nodejs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cmyers/json-ledger.git"
+  },
+  "homepage": "https://github.com/cmyers/json-ledger#readme",
+  "bugs": {
+    "url": "https://github.com/cmyers/json-ledger/issues"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/dev.ts",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "prepare": "npm run build"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^25.0.6",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
+  }
+}
