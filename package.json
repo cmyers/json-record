@@ -48,11 +48,15 @@
     "dev": "tsx src/dev.ts",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "lint": "eslint src --ext .ts"
   },
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^25.0.6",
+    "@typescript-eslint/eslint-plugin": "^8.53.1",
+    "@typescript-eslint/parser": "^8.53.1",
+    "eslint": "^9.39.2",
     "json-seal": "^0.11.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",

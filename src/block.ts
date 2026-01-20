@@ -1,5 +1,4 @@
-// src/block.ts
-import { LedgerBlock, SignatureInfo } from "./types.js";
+import type { LedgerBlock, SignatureInfo } from "./types.js";
 import { sha256 } from "./hash.js";
 
 export interface CreateBlockOptions {

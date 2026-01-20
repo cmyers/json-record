@@ -1,5 +1,5 @@
 // src/verify.ts
-import { LedgerBlock } from "./types.js";
+import type { LedgerBlock } from "./types.js";
 import { sha256 } from "./hash.js";
 
 /**
