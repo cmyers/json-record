@@ -6,7 +6,7 @@ const enc = new TextEncoder();
 
 describe("tamper detection", () => {
   it("detects payload tampering", async () => {
-    const block = await createBlock({ payload: enc.encode("original") });
+    const block = await createBlock( enc.encode("original"));
 
     block.payload = enc.encode("modified");
 
@@ -14,10 +14,10 @@ describe("tamper detection", () => {
   });
 
   it("detects broken chain linkage", async () => {
-    const b1 = await createBlock({ payload: enc.encode("a") });
-    const b2 = await createBlock({ payload: enc.encode("b"), prevBlock: b1 });
+    const b1 = await createBlock(enc.encode("a"));
+    const b2 = await createBlock(enc.encode("b"), b1);
 
-    b2.prevHash = "deadbeef";
+    b2.prevHash = "brokenlinkhash";
 
     expect(await verifyChain([b1, b2])).toBe(false);
   });

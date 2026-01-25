@@ -6,7 +6,7 @@ const enc = new TextEncoder();
 
 describe("block creation", () => {
   it("creates a valid block", async () => {
-    const block = await createBlock({ payload: enc.encode("hello") });
+    const block = await createBlock( enc.encode("hello"));
 
     expect(block.index).toBe(0);
     expect(block.prevHash).toBeNull();

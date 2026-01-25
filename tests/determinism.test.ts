@@ -14,14 +14,11 @@ describe("determinism", () => {
   it("computes the same blockHash when timestamp is fixed", async () => {
     const payload = enc.encode("x");
 
-    const b1 = await createBlock({ payload });
-    const b2 = await createBlock({ payload });
+    const b1 = await createBlock(payload);
+    const b2 = await createBlock(payload);
 
-    // override timestamps to match
     b2.timestamp = b1.timestamp;
 
-    // recompute header-based blockHash manually
-    // (or just compare headerBytes → sha256)
     expect(b1.payloadHash).toBe(b2.payloadHash);
   });
 });

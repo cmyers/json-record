@@ -6,8 +6,8 @@ const enc = new TextEncoder();
 
 describe("chain linking", () => {
   it("creates a valid two-block chain", async () => {
-    const b1 = await createBlock({ payload: enc.encode("a") });
-    const b2 = await createBlock({ payload: enc.encode("b"), prevBlock: b1 });
+    const b1 = await createBlock(enc.encode("a"));
+    const b2 = await createBlock(enc.encode("b"), b1);
 
     expect(await verifyChain([b1, b2])).toBe(true);
   });

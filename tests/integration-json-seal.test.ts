@@ -17,12 +17,10 @@ describe("json-seal + json-ledger integration", () => {
     );
 
     const payload = enc.encode(JSON.stringify(backup));
-    const block = await createBlock({ payload });
+    const block = await createBlock(payload);
 
-    // Ledger-level integrity
     expect(await verifyBlock(block)).toBe(true);
 
-    // json-seal integrity
     const decoded = JSON.parse(dec.decode(block.payload));
     const result = await verifyBackup(decoded);
     expect(result.valid).toBe(true);
@@ -34,14 +32,9 @@ describe("json-seal + json-ledger integration", () => {
     const b1Backup = await signPayload({ count: 1 }, privateKey, publicKey);
     const b2Backup = await signPayload({ count: 2 }, privateKey, publicKey);
 
-    const b1 = await createBlock({
-      payload: enc.encode(JSON.stringify(b1Backup))
-    });
+    const b1 = await createBlock(enc.encode(JSON.stringify(b1Backup)));
 
-    const b2 = await createBlock({
-      payload: enc.encode(JSON.stringify(b2Backup)),
-      prevBlock: b1
-    });
+    const b2 = await createBlock(enc.encode(JSON.stringify(b2Backup)), b1);
 
     expect(await verifyChain([b1, b2])).toBe(true);
   });
@@ -50,18 +43,13 @@ describe("json-seal + json-ledger integration", () => {
     const { privateKey, publicKey } = await generateKeyPair();
 
     const backup = await signPayload({ value: 123 }, privateKey, publicKey);
-    const block = await createBlock({
-      payload: enc.encode(JSON.stringify(backup))
-    });
+    const block = await createBlock(enc.encode(JSON.stringify(backup)));
 
-    // Tamper with the sealed backup
     const tampered = { ...backup, payload: { value: 999 } };
     block.payload = enc.encode(JSON.stringify(tampered));
 
-    // Ledger-level detection
     expect(await verifyBlock(block)).toBe(false);
 
-    // json-seal detection
     const result = await verifyBackup(tampered);
     expect(result.valid).toBe(false);
   });
@@ -70,17 +58,12 @@ describe("json-seal + json-ledger integration", () => {
     const { privateKey, publicKey } = await generateKeyPair();
 
     const backup = await signPayload({ ok: true }, privateKey, publicKey);
-    const block = await createBlock({
-      payload: enc.encode(JSON.stringify(backup))
-    });
+    const block = await createBlock(enc.encode(JSON.stringify(backup)));
 
-    // Tamper with the ledger header
     block.index = 99;
 
-    // Ledger fails
     expect(await verifyBlock(block)).toBe(false);
 
-    // json-seal still passes
     const decoded = JSON.parse(dec.decode(block.payload));
     const result = await verifyBackup(decoded);
     expect(result.valid).toBe(true);
@@ -92,14 +75,9 @@ describe("json-seal + json-ledger integration", () => {
     const sealed = await signPayload({ a: 1 }, privateKey, publicKey);
     const unsealed = enc.encode("raw-data");
 
-    const b1 = await createBlock({
-      payload: enc.encode(JSON.stringify(sealed))
-    });
+    const b1 = await createBlock(enc.encode(JSON.stringify(sealed)));
 
-    const b2 = await createBlock({
-      payload: unsealed,
-      prevBlock: b1
-    });
+    const b2 = await createBlock(unsealed, b1);
 
     expect(await verifyChain([b1, b2])).toBe(true);
   });
@@ -115,9 +93,7 @@ describe("json-seal + json-ledger integration", () => {
 
     const backup = await signPayload(tricky, privateKey, publicKey);
 
-    const block = await createBlock({
-      payload: enc.encode(JSON.stringify(backup))
-    });
+    const block = await createBlock(enc.encode(JSON.stringify(backup)));
 
     const decoded = JSON.parse(dec.decode(block.payload));
     const result = await verifyBackup(decoded);
@@ -132,14 +108,9 @@ describe("json-seal + json-ledger integration", () => {
     const b1Backup = await signPayload({ x: 1 }, privateKey, publicKey);
     const b2Backup = await signPayload({ x: 2 }, privateKey, publicKey);
 
-    const b1 = await createBlock({
-      payload: enc.encode(JSON.stringify(b1Backup))
-    });
+    const b1 = await createBlock(enc.encode(JSON.stringify(b1Backup)));
 
-    const b2 = await createBlock({
-      payload: enc.encode(JSON.stringify(b2Backup)),
-      prevBlock: b1
-    });
+    const b2 = await createBlock(enc.encode(JSON.stringify(b2Backup)), b1);
 
     // Tamper with b1 payload
     const tampered = { ...b1Backup, payload: { x: 999 } };
@@ -155,14 +126,9 @@ describe("json-seal + json-ledger integration", () => {
     const b1Backup = await signPayload({ id: 1 }, k1.privateKey, k1.publicKey);
     const b2Backup = await signPayload({ id: 2 }, k2.privateKey, k2.publicKey);
 
-    const b1 = await createBlock({
-      payload: enc.encode(JSON.stringify(b1Backup))
-    });
+    const b1 = await createBlock(enc.encode(JSON.stringify(b1Backup)));
 
-    const b2 = await createBlock({
-      payload: enc.encode(JSON.stringify(b2Backup)),
-      prevBlock: b1
-    });
+    const b2 = await createBlock(enc.encode(JSON.stringify(b2Backup)), b1);
 
     expect(await verifyChain([b1, b2])).toBe(true);
   });
@@ -185,9 +151,7 @@ describe("json-seal + json-ledger integration", () => {
 
     const original = await signPayload({ foo: "bar" }, privateKey, publicKey);
 
-    const block = await createBlock({
-      payload: enc.encode(JSON.stringify(original))
-    });
+    const block = await createBlock( enc.encode(JSON.stringify(original)));
 
     const decoded = JSON.parse(dec.decode(block.payload));
 
@@ -200,9 +164,7 @@ describe("json-seal + json-ledger integration", () => {
     const big = { blob: "x".repeat(100_000) };
     const backup = await signPayload(big, privateKey, publicKey);
 
-    const block = await createBlock({
-      payload: enc.encode(JSON.stringify(backup))
-    });
+    const block = await createBlock(enc.encode(JSON.stringify(backup)));
 
     expect(await verifyBlock(block)).toBe(true);
 
