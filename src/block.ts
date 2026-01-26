@@ -1,10 +1,6 @@
 import type { LedgerBlock } from "./types.js";
 import { sha256 } from "./hash.js";
 
-export interface CreateBlockOptions {
-  
-}
-
 export async function createBlock(
   payload: Uint8Array,
   prevBlock?: LedgerBlock | null
