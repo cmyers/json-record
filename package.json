@@ -1,6 +1,6 @@
 {
-  "name": "json-ledger",
-  "version": "0.0.1",
+  "name": "json-trail",
+  "version": "0.1.0",
   "author": "Chris Myers <cmyers2015@outlook.com> (https://www.npmjs.com/~cmyers-dev)",
   "description": "A lightweight, tamper-evident, hash-linked ledger for JSON or binary payloads, with optional WebCrypto signatures.",
   "type": "module",
@@ -23,6 +23,7 @@
     "LICENSE"
   ],
   "keywords": [
+    "trail",
     "ledger",
     "hash-chain",
     "append-only",
@@ -37,11 +38,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/cmyers/json-ledger.git"
+    "url": "https://github.com/cmyers/json-trail.git"
   },
-  "homepage": "https://github.com/cmyers/json-ledger#readme",
+  "homepage": "https://github.com/cmyers/json-trail#readme",
   "bugs": {
-    "url": "https://github.com/cmyers/json-ledger/issues"
+    "url": "https://github.com/cmyers/json-trail/issues"
   },
   "scripts": {
     "build": "tsc",

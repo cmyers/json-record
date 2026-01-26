@@ -6,7 +6,7 @@ import { verifyBlock, verifyChain } from "../src/verify";
 const enc = new TextEncoder();
 const dec = new TextDecoder();
 
-describe("json-seal + json-ledger integration", () => {
+describe("json-seal + json-trail integration", () => {
   it("stores a sealed backup inside a ledger block and verifies both layers", async () => {
     const { privateKey, publicKey } = await generateKeyPair();
 
