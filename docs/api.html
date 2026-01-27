@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>json-trail - API</title>
+  <title>json-record - API</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -13,7 +13,7 @@
     <h1>API Reference</h1>
 
     <p>
-      json-trail exposes a minimal API for creating hash-linked blocks and
+      json-record exposes a minimal API for creating hash-linked blocks and
       verifying their integrity. All operations use deterministic SHA-256 hashing and return plain data structures
       containing Uint8Array fields.
     </p>
@@ -27,7 +27,7 @@
     </p>
 
     <h3>Import</h3>
-    <pre><code>import { createBlock } from "json-trail";
+    <pre><code>import { createBlock } from "json-record";
 </code></pre>
 
     <h3>Usage</h3>
@@ -64,7 +64,7 @@ const block = await createBlock(payload);
     </p>
 
     <h3>Import</h3>
-    <pre><code>import { verifyBlock } from "json-trail";
+    <pre><code>import { verifyBlock } from "json-record";
 </code></pre>
 
     <h3>Usage</h3>
@@ -86,7 +86,7 @@ const block = await createBlock(payload);
     </p>
 
     <h3>Import</h3>
-    <pre><code>import { verifyChain } from "json-trail";
+    <pre><code>import { verifyChain } from "json-record";
 </code></pre>
 
     <h3>Usage</h3>
@@ -102,12 +102,12 @@ const block = await createBlock(payload);
       <a href="api.html">API</a>
       <a href="examples.html">Examples</a>
       <a href="integrity-model.html">Integrity Model</a>
-      <a href="seal-and-trail.html">Using json-seal with json-trail</a>
+      <a href="seal-and-trail.html">Using json-seal with json-record</a>
     </nav>
 
     <p class="external-links">
-      <a href="https://github.com/cmyers/json-trail">GitHub</a> ·
-      <a href="https://www.npmjs.com/package/json-trail">npm</a>
+      <a href="https://github.com/cmyers/json-record">GitHub</a> ·
+      <a href="https://www.npmjs.com/package/json-record">npm</a>
     </p>
 
   </main>

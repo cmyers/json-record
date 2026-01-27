@@ -3,17 +3,17 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>json-seal + json-trail</title>
+    <title>json-seal + json-record</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <main>
 
-        <h1>json-seal + json-trail</h1>
+        <h1>json-seal + json-record</h1>
 
         <p>
-            json-seal provides authenticity. json-trail provides chronological integrity.
+            json-seal provides authenticity. json-record provides chronological integrity.
             Together, they form a signed, tamper-evident, hash-linked log entry.
         </p>
 
@@ -24,7 +24,7 @@
         <h2>Example</h2>
 
         <pre><code>import { generateKeyPair, signPayload, canonicalize } from "json-seal";
-import { createBlock } from "json-trail";
+import { createBlock } from "json-record";
 
 const { privateKey, publicKey } = await generateKeyPair();
 
@@ -39,7 +39,7 @@ const block = await createBlock(new TextEncoder().encode(canonical));
             Using <code>canonicalize</code> ensures that the bytes passed into
             <code>createBlock</code> are deterministic. json-seal produces a stable,
             canonical representation of the sealed envelope, so hashing it with
-            json-trail yields consistent results across platforms and runtimes.
+            json-record yields consistent results across platforms and runtimes.
         </p>
 
         <h2>Verification flow</h2>
@@ -54,7 +54,7 @@ const block = await createBlock(new TextEncoder().encode(canonical));
             <a href="api.html">API</a>
             <a href="examples.html">Examples</a>
             <a href="integrity-model.html">Integrity Model</a>
-            <a href="seal-and-trail.html">Using json-seal with json-trail</a>
+            <a href="seal-and-trail.html">Using json-seal with json-record</a>
         </nav>
 
     </main>
