@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>json-trail - Examples</title>
+  <title>json-record - Examples</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -14,7 +14,7 @@
 
     <h2>Basic usage</h2>
 
-    <pre><code>import { createBlock, verifyBlock, verifyChain } from "json-trail";
+    <pre><code>import { createBlock, verifyBlock, verifyChain } from "json-record";
 
 const enc = new TextEncoder();
 const payload = enc.encode("hello world");
@@ -40,12 +40,12 @@ console.log(await verifyChain([block0, block1])); // false
       <a href="api.html">API</a>
       <a href="examples.html">Examples</a>
       <a href="integrity-model.html">Integrity Model</a>
-      <a href="seal-and-trail.html">Using json-seal with json-trail</a>
+      <a href="seal-and-trail.html">Using json-seal with json-record</a>
     </nav>
 
     <p class="external-links">
-      <a href="https://github.com/cmyers/json-trail">GitHub</a> ·
-      <a href="https://www.npmjs.com/package/json-trail">npm</a>
+      <a href="https://github.com/cmyers/json-record">GitHub</a> ·
+      <a href="https://www.npmjs.com/package/json-record">npm</a>
     </p>
 
   </main>
