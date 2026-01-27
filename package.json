@@ -1,6 +1,6 @@
 {
   "name": "json-trail",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Chris Myers <cmyers2015@outlook.com> (https://www.npmjs.com/~cmyers-dev)",
   "description": "A lightweight, tamper-evident, hash-linked ledger for JSON or binary payloads, with optional WebCrypto signatures.",
   "type": "module",

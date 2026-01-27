@@ -138,9 +138,12 @@ console.log(ok); // true
 If you want to prove where the data came from, seal the payload before putting it into the trail:
 
 ```ts
-import { seal } from "json-seal";
+import { generateKeyPair, signPayload } from "json-seal";
+import { createBlock } from "json-trail";
 
-const sealed = await seal({ foo: 123 }, privateKey, publicKey);
+const { privateKey, publicKey } = await generateKeyPair();
+
+const sealed = await signPayload({ foo: 123 }, privateKey, publicKey);
 
 const block = await createBlock(
   new TextEncoder().encode(JSON.stringify(sealed))
