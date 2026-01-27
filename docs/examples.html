@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>json-trail - Examples</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main>
+
+    <h1>Examples</h1>
+
+    <h2>Basic usage</h2>
+
+    <pre><code>import { createBlock, verifyBlock, verifyChain } from "json-trail";
+
+const enc = new TextEncoder();
+const payload = enc.encode("hello world");
+
+const block0 = await createBlock(payload);
+const block1 = await createBlock(payload, block0);
+
+console.log(await verifyBlock(block0));
+console.log(await verifyBlock(block1));
+console.log(await verifyChain([block0, block1]));
+</code></pre>
+
+    <h2>Tampering detection</h2>
+
+    <pre><code>block1.payload[0] ^= 1;
+
+console.log(await verifyBlock(block1)); // false
+console.log(await verifyChain([block0, block1])); // false
+</code></pre>
+
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="api.html">API</a>
+      <a href="examples.html">Examples</a>
+      <a href="integrity-model.html">Integrity Model</a>
+      <a href="seal-and-trail.html">Using json-seal with json-trail</a>
+    </nav>
+
+    <p class="external-links">
+      <a href="https://github.com/cmyers/json-trail">GitHub</a> ·
+      <a href="https://www.npmjs.com/package/json-trail">npm</a>
+    </p>
+
+  </main>
+</body>
+
+</html>
