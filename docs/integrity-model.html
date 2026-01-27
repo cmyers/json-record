@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>json-trail - Integrity Model</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <main>
+
+        <h1>Integrity Model</h1>
+
+        <p>
+            json-trail uses a simple hashing model to detect tampering.
+        </p>
+
+        <h2>Block structure</h2>
+        <ul>
+            <li>payloadHash = SHA-256(payload)</li>
+            <li>prevHash = previous block's blockHash (or null for the first block)</li>
+            <li>blockHash = SHA-256(index + timestamp + payloadHash + prevHash)</li>
+        </ul>
+
+        <h2>Block validity</h2>
+        <ul>
+            <li>payloadHash must match the payload</li>
+            <li>blockHash must match the block contents</li>
+        </ul>
+
+        <h2>Chain validity</h2>
+        <ul>
+            <li>every block must be valid</li>
+            <li>prevHash must match the previous blockHash</li>
+            <li>indexes must increase by 1</li>
+        </ul>
+
+        <nav>
+            <a href="index.html">Overview</a>
+            <a href="api.html">API</a>
+            <a href="examples.html">Examples</a>
+            <a href="integrity-model.html">Integrity Model</a>
+            <a href="seal-and-trail.html">Using json-seal with json-trail</a>
+        </nav>
+
+        <p class="external-links">
+            <a href="https://github.com/cmyers/json-trail">GitHub</a> ·
+            <a href="https://www.npmjs.com/package/json-trail">npm</a>
+        </p>
+
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>json-trail</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main>
+
+    <h1>json-trail</h1>
+    <p class="subtitle">
+      Tamper-evident, hash-linked blocks for apps. Zero dependencies.
+    </p>
+
+    <p>
+      json-trail is a tiny library for creating hash-linked blocks that detect
+      any modification to payloads or history. It provides chronological
+      integrity without keys, signatures, or complex state.
+    </p>
+
+    <h2>Why json-trail exists</h2>
+
+    <p>
+      Local-first apps store data on the device and sync when possible. Without
+      a server acting as the source of truth, you still need a way to know
+      whether your local history has been tampered with. json-trail provides a
+      minimal, deterministic, tamper-evident structure for that purpose.
+    </p>
+
+    <h2>Features</h2>
+    <ul>
+      <li>Deterministic SHA-256 hashing</li>
+      <li>Hash-linked blocks with prevHash</li>
+      <li>Pure JSON block format</li>
+      <li>Browser and Node support</li>
+      <li>Zero dependencies</li>
+    </ul>
+
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="api.html">API</a>
+      <a href="examples.html">Examples</a>
+      <a href="integrity-model.html">Integrity Model</a>
+      <a href="seal-and-trail.html">Using json-seal with json-trail</a>
+    </nav>
+
+    <p class="external-links">
+      <a href="https://github.com/cmyers/json-trail">GitHub</a> ·
+      <a href="https://www.npmjs.com/package/json-trail">npm</a>
+    </p>
+
+  </main>
+</body>
+
+</html>

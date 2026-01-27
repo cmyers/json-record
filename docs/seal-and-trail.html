@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>json-seal + json-trail</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <main>
+
+        <h1>json-seal + json-trail</h1>
+
+        <p>
+            json-seal provides authenticity. json-trail provides chronological integrity.
+            Together, they form a signed, tamper-evident, hash-linked log entry.
+        </p>
+
+        <p>
+            npm: <a href="https://www.npmjs.com/package/json-seal">json-seal</a>
+        </p>
+
+        <h2>Example</h2>
+
+        <pre><code>import { generateKeyPair, signPayload, canonicalize } from "json-seal";
+import { createBlock } from "json-trail";
+
+const { privateKey, publicKey } = await generateKeyPair();
+
+const sealed = await signPayload({ foo: 123 }, privateKey, publicKey);
+
+// canonical, deterministic bytes for the block
+const canonical = canonicalize(sealed);
+const block = await createBlock(new TextEncoder().encode(canonical));
+</code></pre>
+
+        <p>
+            Using <code>canonicalize</code> ensures that the bytes passed into
+            <code>createBlock</code> are deterministic. json-seal produces a stable,
+            canonical representation of the sealed envelope, so hashing it with
+            json-trail yields consistent results across platforms and runtimes.
+        </p>
+
+        <h2>Verification flow</h2>
+        <ul>
+            <li><code>verifyBackup(sealed)</code> checks authenticity</li>
+            <li><code>verifyBlock(block)</code> checks integrity</li>
+            <li><code>verifyChain([...])</code> checks ordering</li>
+        </ul>
+
+        <nav>
+            <a href="index.html">Overview</a>
+            <a href="api.html">API</a>
+            <a href="examples.html">Examples</a>
+            <a href="integrity-model.html">Integrity Model</a>
+            <a href="seal-and-trail.html">Using json-seal with json-trail</a>
+        </nav>
+
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>json-trail - API</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main>
+
+    <h1>API Reference</h1>
+
+    <p>
+      json-trail exposes a minimal API for creating hash-linked blocks and
+      verifying their integrity. All operations use deterministic SHA-256 hashing and return plain data structures
+      containing Uint8Array fields.
+    </p>
+
+    <h2>createBlock(payload, prevBlock)</h2>
+
+    <p>
+      Creates a new hash-linked block. The payload must be a Uint8Array. If a
+      previous block is provided, its <code>blockHash</code> becomes the
+      <code>prevHash</code> of the new block.
+    </p>
+
+    <h3>Import</h3>
+    <pre><code>import { createBlock } from "json-trail";
+</code></pre>
+
+    <h3>Usage</h3>
+    <pre><code>const enc = new TextEncoder();
+const payload = enc.encode("hello");
+
+const block = await createBlock(payload);
+</code></pre>
+
+    <h3>Returns</h3>
+    <pre><code>{
+  index: number,
+  timestamp: number,
+  payload: Uint8Array,
+  payloadHash: Uint8Array,
+  prevHash: Uint8Array | null,
+  blockHash: Uint8Array
+}
+</code></pre>
+
+    <p>
+      Note: modifying a block or its payload after creation will invalidate its
+      hashes.
+    </p>
+
+    <hr />
+
+    <h2>verifyBlock(block)</h2>
+
+    <p>
+      Verifies the integrity of a single block. Returns <code>true</code> if
+      the <code>payloadHash</code> and <code>blockHash</code> match the block
+      contents.
+    </p>
+
+    <h3>Import</h3>
+    <pre><code>import { verifyBlock } from "json-trail";
+</code></pre>
+
+    <h3>Usage</h3>
+    <pre><code>const ok = await verifyBlock(block);
+</code></pre>
+
+    <h3>Returns</h3>
+    <pre><code>boolean
+</code></pre>
+
+    <hr />
+
+    <h2>verifyChain(blocks)</h2>
+
+    <p>
+      Verifies the integrity of a sequence of blocks. Ensures each block is
+      valid and that each <code>prevHash</code> matches the previous
+      <code>blockHash</code>.
+    </p>
+
+    <h3>Import</h3>
+    <pre><code>import { verifyChain } from "json-trail";
+</code></pre>
+
+    <h3>Usage</h3>
+    <pre><code>const ok = await verifyChain([block0, block1, block2]);
+</code></pre>
+
+    <h3>Returns</h3>
+    <pre><code>boolean
+</code></pre>
+
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="api.html">API</a>
+      <a href="examples.html">Examples</a>
+      <a href="integrity-model.html">Integrity Model</a>
+      <a href="seal-and-trail.html">Using json-seal with json-trail</a>
+    </nav>
+
+    <p class="external-links">
+      <a href="https://github.com/cmyers/json-trail">GitHub</a> ·
+      <a href="https://www.npmjs.com/package/json-trail">npm</a>
+    </p>
+
+  </main>
+</body>
+
+</html>
