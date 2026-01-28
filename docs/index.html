@@ -15,6 +15,13 @@
       Tamper-evident, hash-linked blocks for apps. Zero dependencies.
     </p>
 
+    <p class="note">
+      json-record stores arbitrary bytes and produces a JSON-compatible record
+      describing the block. The payload itself is a Uint8Array and can contain
+      any bytes: text, JSON, images, encrypted data, or custom binary formats.
+      The "json" refers to the record structure, not the payload.
+    </p>
+
     <p>
       json-record is a tiny library for creating hash-linked blocks that detect
       any modification to payloads or history. It provides chronological
@@ -28,6 +35,18 @@
       a server acting as the source of truth, you still need a way to know
       whether your local history has been tampered with. json-record provides a
       minimal, deterministic, tamper-evident structure for that purpose.
+    </p>
+
+    <h2>What json-record gives you that other tools do not</h2>
+
+    <p>
+      Databases, CRDTs, and sync engines track state, but they do not guarantee
+      that the <em>history</em> of that state is intact. json-record provides a
+      deterministic, hash-linked sequence of blocks that makes any deletion,
+      insertion, or reordering immediately detectable. It is a portable,
+      dependency-free integrity primitive that works in browsers, PWAs, mobile
+      WebViews, and Node without servers, consensus protocols, or blockchain
+      overhead.
     </p>
 
     <h2>Features</h2>
