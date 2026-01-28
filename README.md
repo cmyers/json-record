@@ -14,7 +14,21 @@
 
 ---
 
-json-record gives you **chronological integrity**: a guarantee that a sequence of blocks has not been altered, reordered, or truncated. It does not enforce authenticity or authorship; it simply ensures the history is intact.
+## What json-record is for
+
+json-record stores arbitrary bytes and produces a JSON-compatible record
+describing the block: index, timestamp, payloadHash, prevHash, and blockHash.
+
+The payload itself is a Uint8Array. It can contain any bytes: text, JSON,
+images, audio, encrypted data, or custom binary formats.
+
+The “json” in json-record refers to the record structure, not the payload.
+json-record does not interpret or transform the payload. It only guarantees
+integrity and ordering.
+
+json-record gives you **chronological integrity**: a guarantee that a sequence
+of blocks has not been altered, reordered, or truncated. It does not enforce
+authenticity or authorship; it simply ensures the history is intact.
 
 ---
 
@@ -89,7 +103,8 @@ json-record does not provide:
 - identity  
 - access control  
 
-If you need to prove who created the data, seal the payload with **json-seal** before storing it in the trail.
+If you need to prove who created the data, seal the payload with **json-seal**
+before storing it in the trail.
 
 json-record stays intentionally minimal.
 
@@ -203,7 +218,9 @@ json-record builds on a long lineage of cryptographic integrity primitives:
 - Certificate Transparency logs  
 - Secure audit log research  
 
-json-record distills these ideas into a tiny, deterministic, dependency-free primitive designed for local-first apps, PWAs, and in-memory trails. It offers integrity without the complexity.
+json-record distills these ideas into a tiny, deterministic, dependency-free
+primitive designed for local-first apps, PWAs, and in-memory trails. It offers
+integrity without the complexity.
 
 ---
 
